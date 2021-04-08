@@ -1,8 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    text-align: center;
+    background-image: linear-gradient(120deg, #0a396e, #66b4d8);
+    color: white;
+    font-family: "Bitter", serif;
+    min-height: 100vh;
+}
+
 h1 {
-    justify-content: center;
+    font-size: 100px;
+    text-align: center;
+}
+
+.result-div {
+    background-color:red;
     font-size: 50px;
 }
 
-.guesses-container {
-    justify-content: center;
-}
+/* .guesses-container {
+    /* text-align: center;
+    align-items: center;
+    list-style:none; */
+
+
