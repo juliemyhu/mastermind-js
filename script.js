@@ -6,23 +6,25 @@ const guessesList = document.querySelector('.guesses-list');
 // store guesses in session
 const guesses = JSON.parse(localStorage.getItem('guesses')) || [];
 // store code in session 
-var code = JSON.parse(localStorage.getItem('code')) || [];
+var code = JSON.parse(localStorage.getItem('code'));
 
 const addGuessButton = document.querySelector('.addGuessButton');
 
-getCode()
+
 
 function getCode() {
+    console.log("get code called")
     fetch("https://www.random.org/integers/?num=4&min=0&max=7&col=1&base=10&format=plain&rnd=new", {})
     .then(response => response.text())  
     .then(function store (html) {
         html = html.replace(/\n/g, '');
         localStorage.setItem('code', JSON.stringify(html));
-        console.log('Hello')
+        console.log('Hello');
         code = JSON.parse (localStorage.getItem('code'));
+        return code
         }  
     ) ;
-    return code
+    
 }
 
 console.log("code",code)
@@ -106,9 +108,13 @@ function populateList(guesses = [], guessesList) {
 
 function playAgain () {
     localStorage.clear();
-    code = getCode();
     location.reload();
-    console.log(code)
+    getCode();
+    console.log(code);
+}
+
+if (code === null) {
+    getCode()
 }
 
 addGuesses.addEventListener('submit', addItem);
