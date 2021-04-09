@@ -1,12 +1,14 @@
 const answer = document.querySelector('.answer')
 // form class to add guess
 const addGuesses = document.querySelector('.add-guesses');
-//guess container
-const guessesContainer = document.querySelector('.guesses-container');
+//guess list
+const guessesList = document.querySelector('.guesses-list');
 // store guesses in session
 const guesses = JSON.parse(localStorage.getItem('guesses')) || [];
 // store code in session 
 var code = JSON.parse(localStorage.getItem('code')) || [];
+
+const addGuessButton = document.querySelector('.addGuessButton');
 
 getCode()
 
@@ -62,6 +64,7 @@ function addItem(e) {
     e.preventDefault();
 
     const text = (this.querySelector('[name=guess]')).value;
+
     const status = checkStatus(text,code);
     const item = {
       text,
@@ -69,21 +72,33 @@ function addItem(e) {
     };
     this.reset();
     guesses.push(item);
-    populateList(guesses, guessesContainer);
+    populateList(guesses, guessesList);
 
     localStorage.setItem('guesses', JSON.stringify(guesses));
 
     gameOver(guesses, status);
+
     
   }
 
-function populateList(guesses = [], guessesContainer) {
-    guessesContainer.innerHTML = guesses.map((guess, i) => {
+//   const todoDiv = document.createElement("div");
+//   todoDiv.classList.add("todo");
+// // create li
+//   const newToDo = document.createElement('li');
+//   newToDo.innerText = todoInput.value;
+//   newToDo.classList.add('todo-item');
+//   todoDiv.appendChild(newToDo);
+
+function populateList(guesses = [], guessesList) {
+    guessesList.innerHTML = guesses.map((guess, i) => {
         return `
-        <li>
-            <label for="item${i}">${guess.text}</label>
-            <label for="item${i}">${guess.status}</label>
-        </li>
+        <div class="guess-hint">
+            <li class="list-group-item list-group-item-primary">
+                <label class ="guess-col" for="item${i}">${guess.text}</label>
+            <li class="list-group-item list-group-item-primary">
+                <label class= "status-col" for="item${i}">${guess.status}</label>
+            </li>
+        </div>
         `;
     }).join('');
 }
@@ -98,6 +113,8 @@ function playAgain () {
 
 addGuesses.addEventListener('submit', addItem);
 
-populateList(guesses, guessesContainer);
+// addGuessButton.addEventListener("click", addItem);
+
+populateList(guesses, guessesList);
 console.log(localStorage.getItem('guesses'))
 

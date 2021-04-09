@@ -5,7 +5,7 @@
 }
 body {
     text-align: center;
-    background-image: linear-gradient(120deg, #0a396e, #66b4d8);
+    background-image: linear-gradient(120deg, #0a396e, #7dbcda);
     color: white;
     font-family: "Bitter", serif;
     min-height: 100vh;
@@ -13,17 +13,72 @@ body {
 
 h1 {
     font-size: 100px;
-    text-align: center;
+    /* text-align: center; */
 }
 
-.result-div {
+/* .result-div {
     background-color:red;
     font-size: 50px;
+} */
+
+form input,
+form button {
+  padding: 0.5em;
+  font-size: 2 rem;
+  border: none;
+  background: white;
 }
 
-/* .guesses-container {
-    /* text-align: center;
+.guess-col {
+    font-size: 20px;
+    justify-content: left;
+}
+
+#result-div {
+    justify-content: center;
+    display: flex;
+    padding: 2px;
+}
+#label-guess-col {
+    width: 20%;
+    float: left;
+    padding: 10px;
+    border: 2px solid white;
+}
+
+#label-result-col {
+    width: 20%;
+    float: right;
+    padding: 10px;
+    border: 2px solid white;
+}
+
+.guesses-container {
+    display: flex;
+    justify-content: center;
     align-items: center;
-    list-style:none; */
+    /* border:solid red; */
+}
 
+.guesses-list {
+    min-width: 40%;
+    list-style:none;
+    /* border:solid green; */
+}
+.guess-hint {
+    /* background: white; */
+    color:black;
+    font-size: 1.5 rem;
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    transition:all 0.5 ease;
+    border: solid white;
+}
 
+form button {
+    color: #e2c35d;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
