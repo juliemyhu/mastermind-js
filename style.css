@@ -12,12 +12,20 @@ body {
 }
 
 
-
 h1 {
     font-size: 100px;
     /* text-align: center; */
 }
 
+#how-to-play {
+    border: solid red;
+}
+
+#how-to-play span {
+    /* border: solid red; */
+    display: flex;
+    justify-content: center;
+}
 /* .result-div {
     background-color:red;
     font-size: 50px;

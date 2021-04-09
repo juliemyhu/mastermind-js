@@ -6,7 +6,10 @@ const guessesList = document.querySelector('.guesses-list');
 // store guesses in session
 const guesses = JSON.parse(localStorage.getItem('guesses')) || [];
 // store code in session 
+
 var code = JSON.parse(localStorage.getItem('code'));
+
+const restart_button = document.querySelector('.restart-button');
 
 const addGuessButton = document.querySelector('.addGuessButton');
 
@@ -29,7 +32,14 @@ function getCode() {
 
 console.log("code",code)
 
-
+function openHowToPlay() {
+    var x = document.getElementById("how-to-play");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
 // 0 correct color, wrong location
 // 1 correct color, correct location
 function checkStatus(guess,code) {
@@ -62,6 +72,7 @@ function gameOver(guesses, status) {
         playAgain();
     }
 }
+
 function addItem(e) {
     e.preventDefault();
 
@@ -117,7 +128,9 @@ if (code === null) {
     getCode()
 }
 
+
 addGuesses.addEventListener('submit', addItem);
+// restart_button.addEventListener('submit',playAgain())
 
 // addGuessButton.addEventListener("click", addItem);
 
