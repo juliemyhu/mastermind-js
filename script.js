@@ -102,14 +102,6 @@ function addItem(e) {
     
   }
 
-//   const todoDiv = document.createElement("div");
-//   todoDiv.classList.add("todo");
-// // create li
-//   const newToDo = document.createElement('li');
-//   newToDo.innerText = todoInput.value;
-//   newToDo.classList.add('todo-item');
-//   todoDiv.appendChild(newToDo);
-
 function populateList(guesses = [], guessesList) {
     guessesList.innerHTML = guesses.map((guess, i) => {
         return `

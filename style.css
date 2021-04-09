@@ -19,12 +19,18 @@ h1 {
 
 #how-to-play {
     border: solid red;
+    text-align: left;
+    justify-content: center;
+    width: 20%;
+    margin: auto;
+    padding: 10px;
 }
 
 #how-to-play span {
     /* border: solid red; */
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
+    text-align: left;
 }
 /* .result-div {
     background-color:red;
