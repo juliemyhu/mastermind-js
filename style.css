@@ -73,6 +73,7 @@ form button {
 .guesses-list {
     min-width: 40%;
     list-style:none;
+    display:table-column;
     /* border:solid green; */
 }
 .guess-hint {

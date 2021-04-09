@@ -13,6 +13,8 @@ const restart_button = document.querySelector('.restart-button');
 
 const addGuessButton = document.querySelector('.addGuessButton');
 
+const chancesLeft = document.querySelector('.chancesLeft');
+
 
 
 function getCode() {
@@ -30,7 +32,7 @@ function getCode() {
     
 }
 
-console.log("code",code)
+
 
 function openHowToPlay() {
     var x = document.getElementById("how-to-play");
@@ -65,13 +67,19 @@ function gameOver(guesses, status) {
         var confirmPlay = confirm("Congrats, You won! Click ok to play again")
         if (confirmPlay) {
             playAgain();
-            // location.reload();
           }
     } else if (guesses.length >= 10 ) {
         alert("game over, you lose")
         playAgain();
     }
 }
+
+function updateChances(guesses) {
+    var num = guesses.length;
+    chancesLeft.innerHTML = `${10 - num}`;
+}
+
+
 
 function addItem(e) {
     e.preventDefault();
@@ -90,7 +98,7 @@ function addItem(e) {
     localStorage.setItem('guesses', JSON.stringify(guesses));
 
     gameOver(guesses, status);
-
+    updateChances(guesses)
     
   }
 
@@ -120,12 +128,12 @@ function populateList(guesses = [], guessesList) {
 function playAgain () {
     localStorage.clear();
     location.reload();
-    getCode();
     console.log(code);
 }
 
 if (code === null) {
     getCode()
+    console.log("code",code)
 }
 
 
@@ -135,5 +143,6 @@ addGuesses.addEventListener('submit', addItem);
 // addGuessButton.addEventListener("click", addItem);
 
 populateList(guesses, guessesList);
+updateChances(guesses)
 console.log(localStorage.getItem('guesses'))
 

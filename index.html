@@ -15,16 +15,18 @@
     <!-- <h2>how to play</h2> -->
     <button onclick="openHowToPlay()">How to play</button>
 
-    <div id="how-to-play">
+    <div id="how-to-play" style="display: none;">
         <span>The objective of the game is to guess the 4-digit code</span>
-        <span>Hints are given for each letter</span>
-           <span> 0 - right number, wrong place</span> 
-            <span>1 - right number, right place </span>
+        <span>Hints are given for each number: </span>
+        <span>0 - right number, wrong place</span> 
+        <span>1 - right number, right place </span>
     </div>
     
-    <button class="restart-button">Restart</button>
-    <div class="answer">
-
+    <button onclick="playAgain()" class="restart-button">Restart</button>
+    <div class="chances-box">
+        Chances Left: 
+        <div class="chancesLeft"></div>
+        </div>
     </div>
    
     <div id="result-div">
