@@ -3,6 +3,16 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+img {
+    fill: white;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    border-radius: 50%;
+    width: 200px;
+    margin-bottom: 50px;
+  }
+
 body {
     text-align: center;
     background-image: linear-gradient(120deg, #0a396e, #7dbcda);
@@ -17,13 +27,47 @@ h1 {
     /* text-align: center; */
 }
 
+button {
+    background-color: #3656c0; /* Green */
+    border: solid white;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    /* text-decoration: none; */
+    display: inline-block;
+    font-size: 16px;
+}
+form button {
+    color: #e2c35d;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+form input {
+  padding: 0.5em;
+  /* font-size: 2 rem; */
+  border: none;
+  background: white;
+}
+button hover {
+    opacity: 30%;
+}
+form button:hover {
+    background: #e2c35d;
+    color: white;
+  }
+
+
 #how-to-play {
-    border: solid red;
+    border: solid white;
     text-align: left;
     justify-content: center;
     width: 20%;
     margin: auto;
     padding: 10px;
+    fill: white;
+    background: rgba(0, 0, 0, 0.1);
 }
 
 #how-to-play span {
@@ -37,13 +81,6 @@ h1 {
     font-size: 50px;
 } */
 
-form input,
-form button {
-  padding: 0.5em;
-  font-size: 2 rem;
-  border: none;
-  background: white;
-}
 
 .guess-col {
     font-size: 20px;
@@ -93,14 +130,8 @@ form button {
     border: solid white;
 }
 
-form button {
-    color: #e2c35d;
-    background: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
 
-  li {
+li {
     text-align: center;
     width:50%;
     color: white;

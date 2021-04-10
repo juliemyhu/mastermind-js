@@ -36,14 +36,16 @@ function getCode() {
 
 function openHowToPlay() {
     var x = document.getElementById("how-to-play");
-    if (x.style.display === "none") {
-      x.style.display = "block";
+    var buttonText = document.getElementById("how-button");
+    if (x.style.display === "none") {   
+        x.style.display = "block";
+        buttonText.innerHTML = "Close How to play";
     } else {
       x.style.display = "none";
+      buttonText.innerHTML = "How to play"
     }
   }
-// 0 correct color, wrong location
-// 1 correct color, correct location
+
 function checkStatus(guess,code) {
     console.log(code,guess)
     var result = []
