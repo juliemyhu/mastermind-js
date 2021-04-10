@@ -14,18 +14,20 @@
     <img src="noun_Brain_3851626.png">
 
     <h1>Mastermind</h1>
-    <!-- <h2>how to play</h2> -->
-    <button onclick="openHowToPlay()" id="how-button">How to play</button>
-
+  
     <div id="how-to-play" style="display: none;">
         <span>The objective of the game is to guess the 4-digit code</span>
         <span>Hints are given for each guess: </span>
         <span>0 - right number, wrong place</span> 
         <span>1 - right number, right place </span>
         <span>You have 10 tries to beat the game!</span>
-        <span>*Note the hints do not tell you with number is referring to</span>
+        <span>*Note the hints do not tell you which number is referring to</span>
         <span>Goodluck :)</span>
     </div>
+
+    <button onclick="openHowToPlay()" id="how-button">How to play</button>
+
+
     
     <button onclick="playAgain()" class="restart-button">Restart</button>
     <div class="chances-box">
@@ -47,8 +49,9 @@
 
     <form class="add-guesses">
         <input type="text" name="guess" minlength="4" maxlength="4" placeholder="Guess" required>
-        <input type="submit" value="+">
-        <!-- <button class="addGuessButton" type="submit">+</button> -->
+        <input type="submit" id="submit-guess" value="+">
+
+        <!-- <button onclick="addItem()"class="addGuessButton" type="submit">+</button> -->
     </form>
  
 

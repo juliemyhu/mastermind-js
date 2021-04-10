@@ -35,13 +35,13 @@ function getCode() {
 
 
 function openHowToPlay() {
-    var x = document.getElementById("how-to-play");
+    var popup = document.getElementById("how-to-play");
     var buttonText = document.getElementById("how-button");
-    if (x.style.display === "none") {   
-        x.style.display = "block";
+    if (popup.style.display === "none") {   
+        popup.style.display = "block";
         buttonText.innerHTML = "Close How to play";
     } else {
-      x.style.display = "none";
+      popup.style.display = "none";
       buttonText.innerHTML = "How to play"
     }
   }

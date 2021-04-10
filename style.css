@@ -5,12 +5,11 @@
 }
 
 img {
-    fill: white;
     background: rgba(0, 0, 0, 0.1);
     padding: 15px;
     border-radius: 50%;
     width: 200px;
-    margin-bottom: 50px;
+    margin-top: 50px;
   }
 
 body {
@@ -24,40 +23,40 @@ body {
 
 h1 {
     font-size: 100px;
-    /* text-align: center; */
 }
 
 button {
-    background-color: #3656c0; /* Green */
-    border: solid white;
+    background-color: #0a396e; /* Green */
+    /* border: 1px solid white; */
+    box-shadow: #021d3b;
     color: white;
     padding: 10px 10px;
     text-align: center;
     /* text-decoration: none; */
-    display: inline-block;
+    display: inline-flex;
     font-size: 16px;
 }
-form button {
+
+/* form button {
     color: #e2c35d;
     background: white;
     cursor: pointer;
     transition: all 0.3s ease;
-}
+} */
 
 form input {
-  padding: 0.5em;
-  /* font-size: 2 rem; */
-  border: none;
-  background: white;
+    padding: 0.5em;
+    border: none;
+    background: white;
 }
-button hover {
-    opacity: 30%;
-}
-form button:hover {
-    background: #e2c35d;
-    color: white;
-  }
 
+button:hover {
+    opacity: 80%;
+}
+
+/* #submit-guess {
+    width: 10px;
+} */
 
 #how-to-play {
     border: solid white;
@@ -71,16 +70,9 @@ form button:hover {
 }
 
 #how-to-play span {
-    /* border: solid red; */
     display: flex;
-    /* justify-content: center; */
     text-align: left;
 }
-/* .result-div {
-    background-color:red;
-    font-size: 50px;
-} */
-
 
 .guess-col {
     font-size: 20px;
@@ -90,8 +82,9 @@ form button:hover {
 #result-div {
     justify-content: center;
     display: flex;
-    padding: 2px;
+
 }
+
 #label-guess-col {
     width: 20%;
     float: left;
@@ -117,10 +110,8 @@ form button:hover {
     min-width: 40%;
     list-style:none;
     display:table-column;
-    /* border:solid green; */
 }
 .guess-hint {
-    /* background: white; */
     color:black;
     font-size: 1.5 rem;
     display:flex;
