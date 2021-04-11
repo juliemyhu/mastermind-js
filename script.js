@@ -1,3 +1,5 @@
+
+
 const answer = document.querySelector('.answer')
 // form class to add guess
 const addGuesses = document.querySelector('.add-guesses');
@@ -9,30 +11,64 @@ const guesses = JSON.parse(localStorage.getItem('guesses')) || [];
 
 var code = JSON.parse(localStorage.getItem('code'));
 
+
+
 const restart_button = document.querySelector('.restart-button');
 
 const addGuessButton = document.querySelector('.addGuessButton');
 
 const chancesLeft = document.querySelector('.chancesLeft');
 
+$(document).ready(function() {
+    var radios = document.getElementsByName("difficulty");
+    var val = localStorage.getItem('difficulty') || 'normal';
+    localStorage.setItem('difficulty',val)
+    for(var i=0;i<radios.length;i++){
+      if(radios[i].value == val){
+        radios[i].checked = true;
+      }
+    }
+    $('input[name="difficulty"]').on('change', function(){
+      localStorage.setItem('difficulty', JSON.stringify($(this).val()));
+      getCode($(this).val());
+    });
+});
 
 
-function getCode() {
-    console.log("get code called")
-    fetch("https://www.random.org/integers/?num=4&min=0&max=7&col=1&base=10&format=plain&rnd=new", {})
+// checked radio value 
+// var difficultyValue = document.querySelector('input[name="difficulty"]:checked')
+// console.log("What is",difficultyValue.value)
+
+// store difficulty in localstorage
+// localStorage.setItem('difficulty', JSON.stringify(difficultyValue.value));
+// localStorage.setItem('difficulty', JSON.stringify(radioDifficulty.value));
+
+
+
+
+var radioDifficulty = document.getElementsByName("difficulty"); // list of radio buttons
+console.log("radio",radioDifficulty)
+
+
+function getCode(difficulty) {
+    console.log("getting new code",difficulty, typeof(difficulty));
+    max_param= {
+        "easy": 4,
+        "normal": 7,
+        "hard": 9
+    };
+    const num = max_param[difficulty]
+
+    fetch(`https://www.random.org/integers/?num=4&min=0&max=${num}&col=1&base=10&format=plain&rnd=new`, {})
     .then(response => response.text())  
     .then(function store (html) {
         html = html.replace(/\n/g, '');
         localStorage.setItem('code', JSON.stringify(html));
-        console.log('Hello');
-        code = JSON.parse (localStorage.getItem('code'));
-        return code
-        }  
-    ) ;
-    
+        code = JSON.parse(localStorage.getItem('code'));
+        console.log("64",code)
+    });
+
 }
-
-
 
 function openHowToPlay() {
     var popup = document.getElementById("how-to-play");
@@ -44,7 +80,7 @@ function openHowToPlay() {
       popup.style.display = "none";
       buttonText.innerHTML = "How to play"
     }
-  }
+}
 
 function checkStatus(guess,code) {
     console.log(code,guess)
@@ -81,13 +117,9 @@ function updateChances(guesses) {
     chancesLeft.innerHTML = `${10 - num}`;
 }
 
-
-
 function addItem(e) {
     e.preventDefault();
-
     const text = (this.querySelector('[name=guess]')).value;
-
     const status = checkStatus(text,code);
     const item = {
       text,
@@ -96,13 +128,10 @@ function addItem(e) {
     this.reset();
     guesses.push(item);
     populateList(guesses, guessesList);
-
     localStorage.setItem('guesses', JSON.stringify(guesses));
-
     gameOver(guesses, status);
-    updateChances(guesses)
-    
-  }
+    updateChances(guesses)  
+}
 
 function populateList(guesses = [], guessesList) {
     guessesList.innerHTML = guesses.map((guess, i) => {
@@ -120,23 +149,43 @@ function populateList(guesses = [], guessesList) {
 
 
 function playAgain () {
-    localStorage.clear();
+
+    
+    localStorage.removeItem('code');
+    localStorage.removeItem('guesses');
     location.reload();
-    console.log(code);
+    var val = JSON.parse(localStorage.getItem('difficulty'));
+    // var val = localStorage.getItem('difficulty');
+    console.log("154",val)
+    getCode(val)
+
 }
 
-if (code === null) {
-    getCode()
-    console.log("code",code)
-}
 
 
 addGuesses.addEventListener('submit', addItem);
-// restart_button.addEventListener('submit',playAgain())
-
-// addGuessButton.addEventListener("click", addItem);
 
 populateList(guesses, guessesList);
 updateChances(guesses)
-console.log(localStorage.getItem('guesses'))
 
+
+function changeDifficulty(difficulty) {
+    console.log("inside change difficult function",difficulty)
+    // playAgain()
+    localStorage.setItem('difficulty', JSON.stringify(difficulty));
+    getCode(difficulty)  
+      
+}
+
+if (code === null) {
+    var val = JSON.parse(localStorage.getItem('difficulty'));
+    console.log("outside fx call")
+    getCode(val)
+}
+
+
+const timeBlock = document.querySelector('timer-container')
+function getTimer() {
+
+    timeBlock.innerHTML(time)
+}
