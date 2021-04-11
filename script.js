@@ -21,33 +21,21 @@ const chancesLeft = document.querySelector('.chancesLeft');
 
 $(document).ready(function() {
     var radios = document.getElementsByName("difficulty");
-    var val = localStorage.getItem('difficulty') || 'normal';
-    localStorage.setItem('difficulty',val)
+    var val = JSON.parse(localStorage.getItem('difficulty')) || 'normal';
+    // localStorage.setItem('difficulty',val)
     for(var i=0;i<radios.length;i++){
+        // console.log(radios[i].value,val);
       if(radios[i].value == val){
+        // console.log("checkinggg")
         radios[i].checked = true;
       }
     }
     $('input[name="difficulty"]').on('change', function(){
       localStorage.setItem('difficulty', JSON.stringify($(this).val()));
       getCode($(this).val());
+      playAgain()
     });
 });
-
-
-// checked radio value 
-// var difficultyValue = document.querySelector('input[name="difficulty"]:checked')
-// console.log("What is",difficultyValue.value)
-
-// store difficulty in localstorage
-// localStorage.setItem('difficulty', JSON.stringify(difficultyValue.value));
-// localStorage.setItem('difficulty', JSON.stringify(radioDifficulty.value));
-
-
-
-
-var radioDifficulty = document.getElementsByName("difficulty"); // list of radio buttons
-console.log("radio",radioDifficulty)
 
 
 function getCode(difficulty) {
