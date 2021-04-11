@@ -1,3 +1,5 @@
+
+// stopwatch class 
 function Stopwatch() {
 
     let startTime,endTime,running, duration = 0;
@@ -32,17 +34,30 @@ function Stopwatch() {
     });
 }
 
-const sw = new Stopwatch()
+// const sw = new Stopwatch()
 
-function createStopwatch(start) {
-    sw.start();
-    var h1 = document.createElement('h1');
-    var textAnswer = document.createTextNode('Timer: ' + sw.duration)
-    h1.setAttribute('id','ageInDays');
-    h1.appendChild(textAnswer)
-    document.getElementById('flex-box-result').appendChild(h1)
+// function createStopwatch(start) {
+//     sw.start();
+
+//     // var h1 = document.createElement('h1');
+//     // var textAnswer = document.createTextNode('Timer: ' + sw.duration)
+//     // h1.setAttribute('id','ageInDays');
+//     // h1.appendChild(textAnswer)
+//     // document.getElementById('flex-box-result').appendChild(h1)
+// }
+
+
+// function stopStopwatch(sw) {
+//     return sw.stop
+// }
+
+
+
+function updateTime(time) {
+    var timer = document.querySelector(".timer-container")
+    var sw = Stopwatch()
+
+    timer.innerHTML = "hiheihe"
 }
 
-function stopStopwatch(sw) {
-return sw.stop
-}
+updateTime("hiieiee")

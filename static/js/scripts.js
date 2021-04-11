@@ -1,23 +1,14 @@
-
+// import Stopwatch from './stopwatch.js'
 
 const answer = document.querySelector('.answer')
-// form class to add guess
-const addGuesses = document.querySelector('.add-guesses');
-//guess list
-const guessesList = document.querySelector('.guesses-list');
-// store guesses in session
-const guesses = JSON.parse(localStorage.getItem('guesses')) || [];
-// store code in session 
-
-var code = JSON.parse(localStorage.getItem('code'));
-
-
-
+const addGuesses = document.querySelector('.add-guesses'); // form class to add guess
+const guessesList = document.querySelector('.guesses-list'); //guess list
+const guesses = JSON.parse(localStorage.getItem('guesses')) || []; // store guesses in session
+var code = JSON.parse(localStorage.getItem('code')); // store code in session 
 const restart_button = document.querySelector('.restart-button');
-
 const addGuessButton = document.querySelector('.addGuessButton');
-
 const chancesLeft = document.querySelector('.chancesLeft');
+const timeBlock = document.querySelector('timer-container');
 
 $(document).ready(function() {
     var radios = document.getElementsByName("difficulty");
@@ -137,8 +128,6 @@ function populateList(guesses = [], guessesList) {
 
 
 function playAgain () {
-
-    
     localStorage.removeItem('code');
     localStorage.removeItem('guesses');
     location.reload();
@@ -172,8 +161,12 @@ if (code === null) {
 }
 
 
-const timeBlock = document.querySelector('timer-container')
-function getTimer() {
 
+function getTimer() {
     timeBlock.innerHTML(time)
 }
+
+// sw = Stopwatch()
+// console.log(sw)
+// module.exports = script;
+
