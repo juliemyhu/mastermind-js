@@ -72,17 +72,11 @@ form input {
   display: flex;
 }
 
-#label-guess-col {
-  width: 15%;
+#label-guess-col, #label-result-col, #label-attempt-col {
+  width: 10%;
   padding: 15px;
-  border: 2px solid white;
-}
-
-#label-result-col {
-  width: 15%;
-  padding: 15px;
-  border: 2px solid white;
-  align-items: center;
+  border: 3px solid white;
+  font-weight: bold;
 }
 
 .guesses-container {
@@ -101,7 +95,7 @@ form input {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: solid white;
+  border: 3px solid white;
   padding: 10px;
 }
 

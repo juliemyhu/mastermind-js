@@ -64,10 +64,11 @@ function openHowToPlay() {
     popup.style.display = "none";
     buttonText.innerHTML = "How to play";
   }
-}
+} // function that takes in users guess and current code, returns hint in array 
+
 
 function checkStatus(guess, code) {
-  console.log(code, guess);
+  console.log("checkstatus called code and guess is:", code, guess);
   var result = [];
 
   for (var i = 0; i < code.length; i++) {
@@ -79,7 +80,20 @@ function checkStatus(guess, code) {
   }
 
   return result;
-}
+} // exports.checkStatus = (guess,code) => {
+//     console.log(code,guess)
+//     var result = []
+//     console.log("new oneee")
+//     for (var i = 0 ; i< code.length;i++){
+//         if (guess[i] === code[i]) {
+//             result.push(1)
+//         } else if (code.includes(guess[i])) {
+//             result.push(0)
+//         } 
+//     }
+//     return result
+// }
+
 
 function gameOver(guesses, status) {
   var tries = guesses.length;
@@ -127,7 +141,7 @@ function populateList() {
   var guesses = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var guessesList = arguments.length > 1 ? arguments[1] : undefined;
   guessesList.innerHTML = guesses.map(function (guess, i) {
-    return "\n        <div class=\"guess-hint\">\n            <li class=\"list-group-item list-group-item-primary\">\n                <label class =\"guess-col\" for=\"item".concat(i, "\">").concat(guess.text, "</label>\n            <li class=\"list-group-item list-group-item-primary\">\n                <label class= \"status-col\" for=\"item").concat(i, "\">").concat(guess.status, "</label>\n            </li>\n        </div>\n        ");
+    return "\n        <div class=\"guess-hint\">\n            <li>\n                <label class=\"attempt-col\"> ".concat(i + 1, "</label>\n            </li>\n            <li>\n                <label class =\"guess-col\" for=\"item").concat(i, "\">").concat(guess.text, "</label>\n            <li>\n                <label class= \"status-col\" for=\"item").concat(i, "\">").concat(guess.status, "</label>\n            </li>\n        </div>\n        ");
   }).join('');
 }
 
@@ -158,3 +172,8 @@ if (code === null) {
 addGuesses.addEventListener('submit', addItem);
 populateList(guesses, guessesList);
 updateChances(guesses);
+var functions = {
+  add: function add(num1, num2) {
+    return num1 + num2;
+  }
+};

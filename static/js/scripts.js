@@ -61,8 +61,9 @@ function openHowToPlay() {
     }
 }
 
+// function that takes in users guess and current code, returns hint in array 
 function checkStatus(guess,code) {
-    console.log(code,guess)
+    console.log("checkstatus called code and guess is:",code,guess)
     var result = []
 
     for (var i = 0 ; i< code.length;i++){
@@ -74,6 +75,20 @@ function checkStatus(guess,code) {
     }
     return result
 }
+
+// exports.checkStatus = (guess,code) => {
+//     console.log(code,guess)
+//     var result = []
+//     console.log("new oneee")
+//     for (var i = 0 ; i< code.length;i++){
+//         if (guess[i] === code[i]) {
+//             result.push(1)
+//         } else if (code.includes(guess[i])) {
+//             result.push(0)
+//         } 
+//     }
+//     return result
+// }
 
 function gameOver(guesses, status) {
 
@@ -120,9 +135,12 @@ function populateList(guesses = [], guessesList) {
     guessesList.innerHTML = guesses.map((guess, i) => {
         return `
         <div class="guess-hint">
-            <li class="list-group-item list-group-item-primary">
+            <li>
+                <label class="attempt-col"> ${i+1}</label>
+            </li>
+            <li>
                 <label class ="guess-col" for="item${i}">${guess.text}</label>
-            <li class="list-group-item list-group-item-primary">
+            <li>
                 <label class= "status-col" for="item${i}">${guess.status}</label>
             </li>
         </div>
@@ -160,3 +178,7 @@ addGuesses.addEventListener('submit', addItem);
 populateList(guesses, guessesList);
 updateChances(guesses)
 
+
+const functions = {
+    add: (num1,num2) => num1+num2
+}
