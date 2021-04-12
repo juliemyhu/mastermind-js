@@ -34,30 +34,42 @@ function Stopwatch() {
     });
 }
 
-// const sw = new Stopwatch()
+// const mytimer = new Stopwatch()
+// console.log(mytimer)
+// mytimer.start()
 
-// function createStopwatch(start) {
-//     sw.start();
+var h2 = document.getElementsByTagName('h2')[0]
+var mytimer = JSON.parse(localStorage.getItem('timer'));
 
-//     // var h1 = document.createElement('h1');
-//     // var textAnswer = document.createTextNode('Timer: ' + sw.duration)
-//     // h1.setAttribute('id','ageInDays');
-//     // h1.appendChild(textAnswer)
-//     // document.getElementById('flex-box-result').appendChild(h1)
-// }
+var time_array = mytimer.split(":")
 
+// console.log("timearray",time_array)
+var seconds = parseInt(time_array[2]) || 0
+var minutes = parseInt(time_array[1]) || 0
+var hours = parseInt(time_array[0]) || 0
+var t
 
-// function stopStopwatch(sw) {
-//     return sw.stop
-// }
+function add() {
+    seconds++;
+    if (seconds >= 60) {
+        seconds = 0;
+        minutes++;
+        if (minutes >= 60) {
+            minutes = 0;
+            hours++;
+        }
+    }
+    h2.textContent = (hours ? (hours > 9 ? hours : "0" + hours) : "00") + ":" + (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
+    localStorage.setItem('timer', JSON.stringify(h2.textContent));
+    timer();
 
-
-
-function updateTime(time) {
-    var timer = document.querySelector(".timer-container")
-    var sw = Stopwatch()
-
-    timer.innerHTML = "hiheihe"
+}
+function timer() {
+    t = setTimeout(add, 1000);
 }
 
-updateTime("hiieiee")
+timer();
+
+function stop() {
+    clearTimeout(t)
+}

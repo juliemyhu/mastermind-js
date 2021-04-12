@@ -77,16 +77,19 @@ function checkStatus(guess,code) {
 
 function gameOver(guesses, status) {
 
+    stop()
+    var tries = guesses.length;
     status = JSON.stringify(status)
     verifyCode = JSON.stringify([1,1,1,1])
+    var code = JSON.parse(localStorage.getItem('code')); 
 
     if (status == verifyCode) {
-        var confirmPlay = confirm("Congrats, You won! Click ok to play again")
+        var confirmPlay = confirm(`Congrats, You won in ${tries} tries! Click ok to play again`)
         if (confirmPlay) {
             playAgain();
           }
     } else if (guesses.length >= 10 ) {
-        alert("game over, you lose")
+        alert(`Game Over, you lost. The code was ${code}`)
         playAgain();
     }
 }
@@ -126,7 +129,6 @@ function populateList(guesses = [], guessesList) {
     }).join('');
 }
 
-
 function playAgain () {
     localStorage.removeItem('code');
     localStorage.removeItem('guesses');
@@ -137,14 +139,6 @@ function playAgain () {
     getCode(val)
 
 }
-
-
-
-addGuesses.addEventListener('submit', addItem);
-
-populateList(guesses, guessesList);
-updateChances(guesses)
-
 
 function changeDifficulty(difficulty) {
     console.log("inside change difficult function",difficulty)
@@ -160,13 +154,7 @@ if (code === null) {
     getCode(val)
 }
 
-
-
-function getTimer() {
-    timeBlock.innerHTML(time)
-}
-
-// sw = Stopwatch()
-// console.log(sw)
-// module.exports = script;
+addGuesses.addEventListener('submit', addItem);
+populateList(guesses, guessesList);
+updateChances(guesses)
 
