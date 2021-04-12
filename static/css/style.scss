@@ -51,13 +51,13 @@ form {
 
 
 #how-to-play {
-    border: solid white;
-    text-align: left;
-    justify-content: center;
+    // border: solid white;
+    // text-align: left;
+    // justify-content: center;
     width: 20%;
     margin: auto;
     padding: 10px;
-    fill: white;
+    // fill: white;
     background: rgba(0, 0, 0, 0.1);
     span {
         display: flex;
@@ -66,7 +66,7 @@ form {
 }
 
 .chances-box {
-    padding: 5px;
+    padding-bottom: 10px;
 }
 
 .guess-col {
@@ -77,21 +77,22 @@ form {
 #result-div {
     justify-content: center;
     display: flex;
-
+    // padding:10px;
 }
 
 #label-guess-col {
-    width: 20%;
-    float: left;
-    padding: 10px;
+    width: 15%;
+    // float: left;
+    padding: 15px;
     border: 2px solid white;
 }
 
 #label-result-col {
-    width: 20%;
-    float: right;
-    padding: 10px;
+    width: 15%;
+    // float: right;
+    padding: 15px;
     border: 2px solid white;
+    align-items: center;
 }
 
 .guesses-container {
@@ -102,9 +103,11 @@ form {
 }
 
 .guesses-list {
-    min-width: 40%;
+    min-width: 30%;
     list-style:none;
     display:table-column;
+ 
+
 }
 .guess-hint {
     // color:black;
@@ -114,6 +117,7 @@ form {
     align-items:center;
     // transition:all 0.5 ease;
     border: solid white;
+    padding:10px;
 }
 
 li {
@@ -134,9 +138,9 @@ li {
     }
 }
 
-// .timer-container {
-//     border: solid red;
-// }
+.timer-container {
+    padding:10px ;
+}
 // /* switch */
 
 // .switch {

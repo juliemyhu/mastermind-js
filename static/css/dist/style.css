@@ -48,13 +48,9 @@ form input {
 }
 
 #how-to-play {
-  border: solid white;
-  text-align: left;
-  justify-content: center;
   width: 20%;
   margin: auto;
   padding: 10px;
-  fill: white;
   background: rgba(0, 0, 0, 0.1);
 }
 #how-to-play span {
@@ -63,7 +59,7 @@ form input {
 }
 
 .chances-box {
-  padding: 5px;
+  padding-bottom: 10px;
 }
 
 .guess-col {
@@ -77,17 +73,16 @@ form input {
 }
 
 #label-guess-col {
-  width: 20%;
-  float: left;
-  padding: 10px;
+  width: 15%;
+  padding: 15px;
   border: 2px solid white;
 }
 
 #label-result-col {
-  width: 20%;
-  float: right;
-  padding: 10px;
+  width: 15%;
+  padding: 15px;
   border: 2px solid white;
+  align-items: center;
 }
 
 .guesses-container {
@@ -97,7 +92,7 @@ form input {
 }
 
 .guesses-list {
-  min-width: 40%;
+  min-width: 30%;
   list-style: none;
   display: table-column;
 }
@@ -107,6 +102,7 @@ form input {
   justify-content: space-between;
   align-items: center;
   border: solid white;
+  padding: 10px;
 }
 
 li {
@@ -125,4 +121,8 @@ li {
 .difficulty-form input {
   color: red;
   margin: 0 10px 0 10px;
+}
+
+.timer-container {
+  padding: 10px;
 }

@@ -84,7 +84,8 @@ function gameOver(guesses, status) {
 
     if (status == verifyCode) {
         stop()
-        var confirmPlay = confirm(`Congrats, You won in ${tries} tries! Click ok to play again`)
+        var timestamp = JSON.parse(localStorage.getItem('timer')); // store code in session 
+        var confirmPlay = confirm(`Congrats, You won in ${tries} tries and ${timestamp} ! Click ok to play again`)
         if (confirmPlay) {
             playAgain();
           }
