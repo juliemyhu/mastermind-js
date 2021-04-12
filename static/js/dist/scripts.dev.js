@@ -82,13 +82,13 @@ function checkStatus(guess, code) {
 }
 
 function gameOver(guesses, status) {
-  stop();
   var tries = guesses.length;
   status = JSON.stringify(status);
   verifyCode = JSON.stringify([1, 1, 1, 1]);
   var code = JSON.parse(localStorage.getItem('code'));
 
   if (status == verifyCode) {
+    stop();
     var confirmPlay = confirm("Congrats, You won in ".concat(tries, " tries! Click ok to play again"));
 
     if (confirmPlay) {
@@ -132,6 +132,7 @@ function populateList() {
 function playAgain() {
   localStorage.removeItem('code');
   localStorage.removeItem('guesses');
+  localStorage.removeItem('timer');
   location.reload();
   var val = JSON.parse(localStorage.getItem('difficulty')); // var val = localStorage.getItem('difficulty');
 
