@@ -1,12 +1,11 @@
 // import Stopwatch from './stopwatch.js'
 
-const answer = document.querySelector('.answer')
 const addGuesses = document.querySelector('.add-guesses'); // form class to add guess
 const guessesList = document.querySelector('.guesses-list'); //guess list
 const guesses = JSON.parse(localStorage.getItem('guesses')) || []; // store guesses in session
 var code = JSON.parse(localStorage.getItem('code')); // store code in session 
-const restart_button = document.querySelector('.restart-button');
-const addGuessButton = document.querySelector('.addGuessButton');
+// const restart_button = document.querySelector('.restart-button');
+// const addGuessButton = document.querySelector('.addGuessButton');
 const chancesLeft = document.querySelector('.chancesLeft');
 const timeBlock = document.querySelector('timer-container');
 
@@ -76,19 +75,6 @@ function checkStatus(guess,code) {
     return result
 }
 
-// exports.checkStatus = (guess,code) => {
-//     console.log(code,guess)
-//     var result = []
-//     console.log("new oneee")
-//     for (var i = 0 ; i< code.length;i++){
-//         if (guess[i] === code[i]) {
-//             result.push(1)
-//         } else if (code.includes(guess[i])) {
-//             result.push(0)
-//         } 
-//     }
-//     return result
-// }
 
 function gameOver(guesses, status) {
 
@@ -99,8 +85,12 @@ function gameOver(guesses, status) {
 
     if (status == verifyCode) {
         stop()
-        var timestamp = JSON.parse(localStorage.getItem('timer')); // store code in session 
-        var confirmPlay = confirm(`Congrats, You won in ${tries} tries and ${timestamp} ! Click ok to play again`)
+        var mytimer = JSON.parse(localStorage.getItem('timer')); 
+        var time_array = mytimer.split(":")
+        var seconds = parseInt(time_array[2]) || 0
+        var minutes = parseInt(time_array[1]) || 0
+        var hours = parseInt(time_array[0]) || 0
+        var confirmPlay = confirm(`Congrats, You won in ${tries} tries and ${hours} hours ${minutes} minute(s) and ${seconds} second(s) ! Click ok to play again`)
         if (confirmPlay) {
             playAgain();
           }
@@ -182,3 +172,4 @@ updateChances(guesses)
 const functions = {
     add: (num1,num2) => num1+num2
 }
+

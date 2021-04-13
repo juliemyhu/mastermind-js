@@ -3,7 +3,6 @@
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 // import Stopwatch from './stopwatch.js'
-var answer = document.querySelector('.answer');
 var addGuesses = document.querySelector('.add-guesses'); // form class to add guess
 
 var guessesList = document.querySelector('.guesses-list'); //guess list
@@ -11,9 +10,9 @@ var guessesList = document.querySelector('.guesses-list'); //guess list
 var guesses = JSON.parse(localStorage.getItem('guesses')) || []; // store guesses in session
 
 var code = JSON.parse(localStorage.getItem('code')); // store code in session 
+// const restart_button = document.querySelector('.restart-button');
+// const addGuessButton = document.querySelector('.addGuessButton');
 
-var restart_button = document.querySelector('.restart-button');
-var addGuessButton = document.querySelector('.addGuessButton');
 var chancesLeft = document.querySelector('.chancesLeft');
 var timeBlock = document.querySelector('timer-container');
 $(document).ready(function () {
@@ -80,20 +79,7 @@ function checkStatus(guess, code) {
   }
 
   return result;
-} // exports.checkStatus = (guess,code) => {
-//     console.log(code,guess)
-//     var result = []
-//     console.log("new oneee")
-//     for (var i = 0 ; i< code.length;i++){
-//         if (guess[i] === code[i]) {
-//             result.push(1)
-//         } else if (code.includes(guess[i])) {
-//             result.push(0)
-//         } 
-//     }
-//     return result
-// }
-
+}
 
 function gameOver(guesses, status) {
   var tries = guesses.length;
@@ -103,9 +89,12 @@ function gameOver(guesses, status) {
 
   if (status == verifyCode) {
     stop();
-    var timestamp = JSON.parse(localStorage.getItem('timer')); // store code in session 
-
-    var confirmPlay = confirm("Congrats, You won in ".concat(tries, " tries and ").concat(timestamp, " ! Click ok to play again"));
+    var mytimer = JSON.parse(localStorage.getItem('timer'));
+    var time_array = mytimer.split(":");
+    var seconds = parseInt(time_array[2]) || 0;
+    var minutes = parseInt(time_array[1]) || 0;
+    var hours = parseInt(time_array[0]) || 0;
+    var confirmPlay = confirm("Congrats, You won in ".concat(tries, " tries and ").concat(hours, " hours ").concat(minutes, " minute(s) and ").concat(seconds, " second(s) ! Click ok to play again"));
 
     if (confirmPlay) {
       playAgain();
