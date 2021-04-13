@@ -83,7 +83,7 @@ function gameOver(guesses, status) {
         var time_array = mytimer.split(":")
         var seconds = parseInt(time_array[1]) || 0
         var minutes = parseInt(time_array[0]) || 0
-        var confirmPlay = confirm(`Congrats, You won in ${tries} tries and ${minutes} minute(s) and ${seconds} second(s) ! Click ok to play again`)
+        var confirmPlay = confirm(`Congrats, You won in ${tries} tries and ${minutes} minute(s) ${seconds} second(s) ! Click ok to play again`)
         
         if (confirmPlay) {
             playAgain();
