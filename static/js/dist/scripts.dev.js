@@ -1,8 +1,5 @@
 "use strict";
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-// import Stopwatch from './stopwatch.js'
 var addGuesses = document.querySelector('.add-guesses'); // form class to add guess
 
 var guessesList = document.querySelector('.guesses-list'); //guess list
@@ -10,19 +7,15 @@ var guessesList = document.querySelector('.guesses-list'); //guess list
 var guesses = JSON.parse(localStorage.getItem('guesses')) || []; // store guesses in session
 
 var code = JSON.parse(localStorage.getItem('code')); // store code in session 
-// const restart_button = document.querySelector('.restart-button');
-// const addGuessButton = document.querySelector('.addGuessButton');
 
 var chancesLeft = document.querySelector('.chancesLeft');
 var timeBlock = document.querySelector('timer-container');
 $(document).ready(function () {
   var radios = document.getElementsByName("difficulty");
-  var val = JSON.parse(localStorage.getItem('difficulty')) || 'normal'; // localStorage.setItem('difficulty',val)
+  var val = JSON.parse(localStorage.getItem('difficulty')) || 'normal';
 
   for (var i = 0; i < radios.length; i++) {
-    // console.log(radios[i].value,val);
     if (radios[i].value == val) {
-      // console.log("checkinggg")
       radios[i].checked = true;
     }
   }
@@ -35,7 +28,7 @@ $(document).ready(function () {
 });
 
 function getCode(difficulty) {
-  console.log("getting new code", difficulty, _typeof(difficulty));
+  // console.log("getting new code",difficulty, typeof(difficulty));
   max_param = {
     "easy": 4,
     "normal": 7,
@@ -48,7 +41,6 @@ function getCode(difficulty) {
     html = html.replace(/\n/g, '');
     localStorage.setItem('code', JSON.stringify(html));
     code = JSON.parse(localStorage.getItem('code'));
-    console.log("64", code);
   });
 }
 
@@ -67,7 +59,7 @@ function openHowToPlay() {
 
 
 function checkStatus(guess, code) {
-  console.log("checkstatus called code and guess is:", code, guess);
+  // console.log("checkstatus called code and guess is:",code,guess)
   var result = [];
 
   for (var i = 0; i < code.length; i++) {
@@ -89,17 +81,17 @@ function gameOver(guesses, status) {
 
   if (status == verifyCode) {
     stop();
+    populateList(guesses, guessesList);
     var mytimer = JSON.parse(localStorage.getItem('timer'));
     var time_array = mytimer.split(":");
-    var seconds = parseInt(time_array[2]) || 0;
-    var minutes = parseInt(time_array[1]) || 0;
-    var hours = parseInt(time_array[0]) || 0;
-    var confirmPlay = confirm("Congrats, You won in ".concat(tries, " tries and ").concat(hours, " hours ").concat(minutes, " minute(s) and ").concat(seconds, " second(s) ! Click ok to play again"));
+    var seconds = parseInt(time_array[1]) || 0;
+    var minutes = parseInt(time_array[0]) || 0;
+    var confirmPlay = confirm("Congrats, You won in ".concat(tries, " tries and ").concat(minutes, " minute(s) and ").concat(seconds, " second(s) ! Click ok to play again"));
 
     if (confirmPlay) {
       playAgain();
     }
-  } else if (guesses.length >= 10) {
+  } else if (tries >= 10) {
     alert("Game Over, you lost. The code was ".concat(code));
     playAgain();
   }
@@ -146,8 +138,8 @@ function playAgain() {
 }
 
 function changeDifficulty(difficulty) {
-  console.log("inside change difficult function", difficulty); // playAgain()
-
+  // console.log("inside change difficult function",difficulty)
+  // playAgain()
   localStorage.setItem('difficulty', JSON.stringify(difficulty));
   getCode(difficulty);
 }
@@ -161,8 +153,3 @@ if (code === null) {
 addGuesses.addEventListener('submit', addItem);
 populateList(guesses, guessesList);
 updateChances(guesses);
-var functions = {
-  add: function add(num1, num2) {
-    return num1 + num2;
-  }
-};

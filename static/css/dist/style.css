@@ -24,6 +24,10 @@ h1 {
   font-size: 100px;
 }
 
+h5, h6 {
+  text-align: left;
+}
+
 button {
   background-color: #0a396e;
   /* Green */

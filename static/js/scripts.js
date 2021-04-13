@@ -1,22 +1,15 @@
-// import Stopwatch from './stopwatch.js'
-
 const addGuesses = document.querySelector('.add-guesses'); // form class to add guess
 const guessesList = document.querySelector('.guesses-list'); //guess list
 const guesses = JSON.parse(localStorage.getItem('guesses')) || []; // store guesses in session
 var code = JSON.parse(localStorage.getItem('code')); // store code in session 
-// const restart_button = document.querySelector('.restart-button');
-// const addGuessButton = document.querySelector('.addGuessButton');
 const chancesLeft = document.querySelector('.chancesLeft');
 const timeBlock = document.querySelector('timer-container');
 
 $(document).ready(function() {
     var radios = document.getElementsByName("difficulty");
     var val = JSON.parse(localStorage.getItem('difficulty')) || 'normal';
-    // localStorage.setItem('difficulty',val)
     for(var i=0;i<radios.length;i++){
-        // console.log(radios[i].value,val);
       if(radios[i].value == val){
-        // console.log("checkinggg")
         radios[i].checked = true;
       }
     }
@@ -29,7 +22,7 @@ $(document).ready(function() {
 
 
 function getCode(difficulty) {
-    console.log("getting new code",difficulty, typeof(difficulty));
+    // console.log("getting new code",difficulty, typeof(difficulty));
     max_param= {
         "easy": 4,
         "normal": 7,
@@ -43,7 +36,6 @@ function getCode(difficulty) {
         html = html.replace(/\n/g, '');
         localStorage.setItem('code', JSON.stringify(html));
         code = JSON.parse(localStorage.getItem('code'));
-        console.log("64",code)
     });
 
 }
@@ -62,7 +54,7 @@ function openHowToPlay() {
 
 // function that takes in users guess and current code, returns hint in array 
 function checkStatus(guess,code) {
-    console.log("checkstatus called code and guess is:",code,guess)
+    // console.log("checkstatus called code and guess is:",code,guess)
     var result = []
 
     for (var i = 0 ; i< code.length;i++){
@@ -85,16 +77,18 @@ function gameOver(guesses, status) {
 
     if (status == verifyCode) {
         stop()
-        var mytimer = JSON.parse(localStorage.getItem('timer')); 
+        populateList(guesses, guessesList);
+
+        var mytimer = JSON.parse(localStorage.getItem('timer'));
         var time_array = mytimer.split(":")
-        var seconds = parseInt(time_array[2]) || 0
-        var minutes = parseInt(time_array[1]) || 0
-        var hours = parseInt(time_array[0]) || 0
-        var confirmPlay = confirm(`Congrats, You won in ${tries} tries and ${hours} hours ${minutes} minute(s) and ${seconds} second(s) ! Click ok to play again`)
+        var seconds = parseInt(time_array[1]) || 0
+        var minutes = parseInt(time_array[0]) || 0
+        var confirmPlay = confirm(`Congrats, You won in ${tries} tries and ${minutes} minute(s) and ${seconds} second(s) ! Click ok to play again`)
+        
         if (confirmPlay) {
             playAgain();
           }
-    } else if (guesses.length >= 10 ) {
+    } else if (tries >= 10 ) {
         alert(`Game Over, you lost. The code was ${code}`)
         playAgain();
     }
@@ -151,7 +145,7 @@ function playAgain () {
 }
 
 function changeDifficulty(difficulty) {
-    console.log("inside change difficult function",difficulty)
+    // console.log("inside change difficult function",difficulty)
     // playAgain()
     localStorage.setItem('difficulty', JSON.stringify(difficulty));
     getCode(difficulty)  
@@ -167,9 +161,4 @@ if (code === null) {
 addGuesses.addEventListener('submit', addItem);
 populateList(guesses, guessesList);
 updateChances(guesses)
-
-
-const functions = {
-    add: (num1,num2) => num1+num2
-}
 
