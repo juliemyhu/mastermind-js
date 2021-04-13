@@ -50,28 +50,25 @@ function openHowToPlay() {
 
   if (popup.style.display === "none") {
     popup.style.display = "block";
-    buttonText.innerHTML = "Close How to play";
+    buttonText.innerHTML = "Back to playing";
   } else {
     popup.style.display = "none";
     buttonText.innerHTML = "How to play";
   }
 } // function that takes in users guess and current code, returns hint in array 
+// function checkStatus(guess,code) {
+//     // console.log("checkstatus called code and guess is:",code,guess)
+//     var result = []
+//     for (var i = 0 ; i< code.length;i++){
+//         if (guess[i] === code[i]) {
+//             result.push(1)
+//         } else if (code.includes(guess[i])) {
+//             result.push(0)
+//         } 
+//     }
+//     return result
+// }
 
-
-function checkStatus(guess, code) {
-  // console.log("checkstatus called code and guess is:",code,guess)
-  var result = [];
-
-  for (var i = 0; i < code.length; i++) {
-    if (guess[i] === code[i]) {
-      result.push(1);
-    } else if (code.includes(guess[i])) {
-      result.push(0);
-    }
-  }
-
-  return result;
-}
 
 function gameOver(guesses, status) {
   var tries = guesses.length;
@@ -145,11 +142,11 @@ function changeDifficulty(difficulty) {
 }
 
 if (code === null) {
-  var val = JSON.parse(localStorage.getItem('difficulty'));
-  console.log("outside fx call");
+  var val = JSON.parse(localStorage.getItem('difficulty')); // console.log("outside fx call")
+
   getCode(val);
 }
 
 addGuesses.addEventListener('submit', addItem);
 populateList(guesses, guessesList);
-updateChances(guesses);
+updateChances(guesses); // module.exports = checkStatus;

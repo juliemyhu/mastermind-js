@@ -17,23 +17,35 @@
 </head>
 <body>
     <img src="static/images/brain.png">
-
-    <h1>Mastermind</h1>
-  
+    <div>
+        <h1>Mastermind</h1>
+        
+    </div>
     <div id="how-to-play" style="display: none;">
         <span>The objective of the game is to guess the 4-digit code</span>
-        <span>Hints are given for each guess: </span>
-        <span>0 - right number, wrong place</span> 
-        <span>1 - right number, right place</span>
+        <span>Hints are given for each guess:</span>
+        <ul>
+            <li>0 - right number, wrong place</li> 
+            <li>1 - right number, right place</li>
+        </ul>
+      
         <span>You have 10 tries to beat the game!</span>
         <span>*Note the hints do not tell you which number it is referring to</span>
+        <span></span>
+        <span>There are 3 levels of difficulty</span>
+        <ul>
+            <li>Easy - numbers are from [0 - 4]</li>
+            <li>  Normal - numbers are from [0 - 7]</li>
+            <li>Hard - numbers are from [0 - 9]</li>
+        </ul>
+       
+        <span>All levels can have repeated numbers</span>
+        <span></span>
         <span>Goodluck :)</span>
     </div>
-
-    <button onclick="openHowToPlay()" id="how-button">How to play</button>
-
-
     
+    <button class="how-to-play-button" onclick="openHowToPlay()" id="how-button">How to play</button>
+
     <button onclick="playAgain()" class="restart-button">Restart</button>
 
     <h2 class="timer-container"><time>00:00</time></h2>
@@ -70,7 +82,8 @@
         <label for="hard">Hard</label>
     </form>
 
-        <script src="static/js/stopwatch.js"></script>  
+        <script src="static/js/stopwatch.js"></script> 
+        <script src="static/js/checkStatus.js"></script> 
         <script src="static/js/scripts.js"></script>
         
   

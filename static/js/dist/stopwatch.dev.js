@@ -14,10 +14,7 @@ function add() {
 
   if (seconds >= 60) {
     seconds = 0;
-    minutes++; // if (minutes >= 60) {
-    //     minutes = 0;
-    //     hours++;
-    // }
+    minutes++;
   }
 
   h2.textContent = (minutes ? minutes > 9 ? minutes : "0" + minutes : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);

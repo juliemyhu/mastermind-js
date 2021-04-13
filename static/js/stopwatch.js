@@ -17,10 +17,6 @@ function add() {
     if (seconds >= 60) {
         seconds = 0;
         minutes++;
-        // if (minutes >= 60) {
-        //     minutes = 0;
-        //     hours++;
-        // }
     }
     h2.textContent = (minutes ? (minutes > 9 ? minutes : "0" + minutes) : "00") + ":" + (seconds > 9 ? seconds : "0" + seconds);
     localStorage.setItem('timer', JSON.stringify(h2.textContent));
