@@ -31,14 +31,14 @@ $(document).ready(function () {
 });
 
 function openHowToPlay() {
-  var popup = document.getElementById("how-to-play");
+  var error = document.getElementById("how-to-play");
   var buttonText = document.getElementById("how-button");
 
-  if (popup.style.display === "none") {
-    popup.style.display = "block";
+  if (error.style.display === "none") {
+    error.style.display = "block";
     buttonText.innerHTML = "Back to playing";
   } else {
-    popup.style.display = "none";
+    error.style.display = "none";
     buttonText.innerHTML = "How to play";
   }
 } // function that takes in users guess and current code, returns hint in array 
@@ -130,19 +130,20 @@ function changeDifficulty(difficulty) {
 guessInput.addEventListener('keydown', onInputChange);
 
 function onInputChange(e) {
-  var okKeys = [8, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57];
+  var error = document.getElementById("error-p");
+  var okKeys = [8, 13, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57];
 
   if (okKeys.includes(e.keyCode)) {
-    return;
+    error.innerHTML = "";
   } else {
     console.log("not a numbers");
+    error.innerHTML = "Error: Please enter a number";
     e.preventDefault();
   }
 }
 
 if (code === null) {
-  var val = JSON.parse(localStorage.getItem('difficulty')); // console.log("outside fx call")
-
+  var val = JSON.parse(localStorage.getItem('difficulty'));
   getCode(val);
 }
 
