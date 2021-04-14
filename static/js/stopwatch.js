@@ -1,9 +1,6 @@
-
 var h2 = document.getElementsByTagName('h2')[0]
-
-
 var mytimer = JSON.parse(localStorage.getItem('timer')) || "00:00";
-// console.log("mytimer",mytimer, "type is",typeof(mytimer) )
+
 localStorage.setItem('timer', JSON.stringify(h2.textContent));
 
 var time_array = mytimer.split(":")
@@ -29,6 +26,6 @@ function timer() {
 
 timer();
 
-function stop() {
+function stopTimer() {
     clearTimeout(t)
 }

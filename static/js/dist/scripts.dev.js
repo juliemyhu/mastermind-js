@@ -8,8 +8,11 @@ var guesses = JSON.parse(localStorage.getItem('guesses')) || []; // store guesse
 
 var code = JSON.parse(localStorage.getItem('code')); // store code in session 
 
-var chancesLeft = document.querySelector('.chancesLeft');
-var timeBlock = document.querySelector('timer-container');
+var chancesLeft = document.querySelector('.chancesLeft'); //chances left div
+
+var timeBlock = document.querySelector('timer-container'); // timer div
+
+var guessInput = document.querySelector('#guess-input');
 $(document).ready(function () {
   var radios = document.getElementsByName("difficulty");
   var val = JSON.parse(localStorage.getItem('difficulty')) || 'normal';
@@ -26,23 +29,6 @@ $(document).ready(function () {
     playAgain();
   });
 });
-
-function getCode(difficulty) {
-  // console.log("getting new code",difficulty, typeof(difficulty));
-  max_param = {
-    "easy": 4,
-    "normal": 7,
-    "hard": 9
-  };
-  var num = max_param[difficulty];
-  fetch("https://www.random.org/integers/?num=4&min=0&max=".concat(num, "&col=1&base=10&format=plain&rnd=new"), {}).then(function (response) {
-    return response.text();
-  }).then(function store(html) {
-    html = html.replace(/\n/g, '');
-    localStorage.setItem('code', JSON.stringify(html));
-    code = JSON.parse(localStorage.getItem('code'));
-  });
-}
 
 function openHowToPlay() {
   var popup = document.getElementById("how-to-play");
@@ -70,14 +56,15 @@ function openHowToPlay() {
 // }
 
 
-function gameOver(guesses, status) {
+function checkGameOver(guesses, status) {
+  var gameOver = false;
   var tries = guesses.length;
   status = JSON.stringify(status);
   verifyCode = JSON.stringify([1, 1, 1, 1]);
   var code = JSON.parse(localStorage.getItem('code'));
 
   if (status == verifyCode) {
-    stop();
+    stopTimer();
     populateList(guesses, guessesList);
     var mytimer = JSON.parse(localStorage.getItem('timer'));
     var time_array = mytimer.split(":");
@@ -109,9 +96,9 @@ function addItem(e) {
   };
   this.reset();
   guesses.push(item);
-  populateList(guesses, guessesList);
   localStorage.setItem('guesses', JSON.stringify(guesses));
-  gameOver(guesses, status);
+  populateList(guesses, guessesList);
+  checkGameOver(guesses, status);
   updateChances(guesses);
 }
 
@@ -130,7 +117,6 @@ function playAgain() {
   location.reload();
   var val = JSON.parse(localStorage.getItem('difficulty')); // var val = localStorage.getItem('difficulty');
 
-  console.log("154", val);
   getCode(val);
 }
 
@@ -139,6 +125,19 @@ function changeDifficulty(difficulty) {
   // playAgain()
   localStorage.setItem('difficulty', JSON.stringify(difficulty));
   getCode(difficulty);
+}
+
+guessInput.addEventListener('keydown', onInputChange);
+
+function onInputChange(e) {
+  var okKeys = [8, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57];
+
+  if (okKeys.includes(e.keyCode)) {
+    return;
+  } else {
+    console.log("not a numbers");
+    e.preventDefault();
+  }
 }
 
 if (code === null) {

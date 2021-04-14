@@ -24,12 +24,11 @@
     <div id="how-to-play" style="display: none;">
         <span>The objective of the game is to guess the 4-digit code</span>
         <br>
-        <span>Hints are given for each guess:</span>
+        <span>Hints are given for each number in your guess:</span>
         <ul id="instructions-hint">
             <li>0 - right number, wrong place</li> 
             <li>1 - right number, right place</li>
         </ul>
-      
         <span>You have 10 hints to beat the game!</span>
         <span>*Note the hints do not tell you which number it is referring to</span>
         <br>
@@ -70,7 +69,7 @@
 
 
     <form class="add-guesses">
-        <input type="text" name="guess" minlength="4" maxlength="4" placeholder="Guess" required>
+        <input type="text" id="guess-input" name="guess" minlength="4" maxlength="4" placeholder="Guess" required>
         <input type="submit" id="submit-guess" value="+">
     </form>
  
@@ -85,6 +84,7 @@
 
         <script src="static/js/stopwatch.js"></script> 
         <script src="static/js/checkStatus.js"></script> 
+        <script src="static/js/getCode.js" ></script>
         <script src="static/js/scripts.js"></script>
         
   
