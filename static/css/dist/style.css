@@ -31,15 +31,32 @@ h5, h6 {
 button {
   background-color: #0a396e;
   /* Green */
-  box-shadow: #021d3b;
   color: white;
   padding: 10px 10px;
-  text-align: center;
-  display: inline-flex;
   font-size: 16px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
 }
 button:hover {
-  opacity: 80%;
+  opacity: 70%;
+  color: #0a396e;
+  background: white;
+}
+
+#submit-guess {
+  color: #0a396e;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 0px;
+  border: none;
+  padding: 0.3em;
+}
+#submit-guess:hover {
+  background: #0a396e;
+  color: white;
 }
 
 form {
