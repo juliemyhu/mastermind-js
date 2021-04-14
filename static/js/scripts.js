@@ -1,10 +1,12 @@
 const addGuesses = document.querySelector('.add-guesses'); // form class to add guess
 const guessesList = document.querySelector('.guesses-list'); //guess list
-const guesses = JSON.parse(localStorage.getItem('guesses')) || []; // store guesses in session
-var code = JSON.parse(localStorage.getItem('code')); // store code in session 
+
 const chancesLeft = document.querySelector('.chancesLeft'); //chances left div
 const timeBlock = document.querySelector('timer-container'); // timer div
 const guessInput = document.querySelector('#guess-input');
+
+const guesses = JSON.parse(localStorage.getItem('guesses')) || []; // store guesses in session
+var code = JSON.parse(localStorage.getItem('code')); // store code in session 
 
 $(document).ready(function() {
     var radios = document.getElementsByName("difficulty");
@@ -84,6 +86,10 @@ function updateChances(guesses) {
 function addItem(e) {
     e.preventDefault();
     const text = (this.querySelector('[name=guess]')).value;
+    // console.log(text ,typeof(text))
+    var code = JSON.parse(localStorage.getItem('code')); // store code in session 
+
+    // console.log(code ,typeof(code))
     const status = checkStatus(text,code);
     const item = {
       text,
@@ -121,7 +127,6 @@ function playAgain () {
     localStorage.removeItem('timer')
     location.reload();
     var val = JSON.parse(localStorage.getItem('difficulty'));
-    // var val = localStorage.getItem('difficulty');
     getCode(val)
 
 }
@@ -138,12 +143,17 @@ guessInput.addEventListener('keydown',onInputChange);
 
 function onInputChange(e) {
     var error = document.getElementById("error-p");
-    var okKeys = [8,13,48,49,50,51,52,53,54,55,56,57]
-    if (okKeys.includes(e.keyCode)) {
+    var val = JSON.parse(localStorage.getItem('difficulty'));
+    validKeysBasedOnDifficulty= {
+        "easy": [8,13,37,39,48,49,50,51,52],
+        "normal":[8,13,37,39,48,49,50,51,52,53,54,55],
+        "hard": [8,13,37,39,48,49,50,51,52,53,54,55,56,57]
+    };
+    var validKeys = validKeysBasedOnDifficulty[val];
+    if (validKeys.includes(e.keyCode)) {
         error.innerHTML = ""
     } else {
-        console.log("not a numbers")
-        error.innerHTML = "Error: Please enter a number"
+        error.innerHTML = "Error: Please enter a valid number"
         e.preventDefault()
     }
 }
