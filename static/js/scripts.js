@@ -53,7 +53,6 @@ function openHowToPlay() {
 
 function checkGameOver(guesses, status) {
 
-    var gameOver = false;
     var tries = guesses.length;
     status = JSON.stringify(status)
     verifyCode = JSON.stringify([1,1,1,1])
@@ -61,21 +60,20 @@ function checkGameOver(guesses, status) {
 
     if (status == verifyCode) {
         stopTimer()
-        populateList(guesses, guessesList);
-
+        // populateList(guesses, guessesList);
+        guessInput.disabled = true;
         var mytimer = JSON.parse(localStorage.getItem('timer'));
         var time_array = mytimer.split(":")
         var seconds = parseInt(time_array[1]) || 0
         var minutes = parseInt(time_array[0]) || 0
         var confirmPlay = confirm(`Congrats, You won in ${tries} tries and ${minutes} minute(s) ${seconds} second(s) ! Click ok to play again`)
         
-        if (confirmPlay) {
-            
+        if (confirmPlay) { 
             playAgain();
           }
     } else if (tries >= 10 ) {
         alert(`Game Over, you lost. The code was ${code}`)
-        
+        stopTimer()
         playAgain();
         // clearTimer();
         
@@ -102,9 +100,9 @@ function addItem(e) {
     this.reset();
     guesses.push(item);
     localStorage.setItem('guesses', JSON.stringify(guesses));
-
-    populateList(guesses, guessesList);
     checkGameOver(guesses, status);
+    populateList(guesses, guessesList);
+    
     updateChances(guesses)  
 }
 
@@ -161,9 +159,19 @@ function onInputChange(e) {
     if (validKeys.includes(e.keyCode)) {
         error.innerHTML = ""
     } else {
-        error.innerHTML = "Error: Please enter a valid number"
-        e.preventDefault()
+
+        if (val == "easy"){
+            e.preventDefault()
+            error.innerHTML = "Error: Please enter a number from 0-4"
+        } else if (val == "normal") {
+            e.preventDefault()
+            error.innerHTML = "Error: Please enter a number from 0-7"
+        } else {   
+            e.preventDefault()
+            error.innerHTML = "Error: Please enter a number from 0-9"
+        }
     }
+    
 }
 
 
