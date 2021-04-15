@@ -42,6 +42,7 @@ button {
         color: #0a396e;
         background: white;
     }
+    
 }
 
 #submit-guess {
@@ -74,8 +75,13 @@ form {
     top: 10px;
     right: 10px;
 }
+#audio-button {
+    position: absolute;
+    top:10px;
+    right: 120px;
+}
 
-#how-to-play {
+#how-to-play{
     width: 40%;
     margin: auto;
     padding: 10px;

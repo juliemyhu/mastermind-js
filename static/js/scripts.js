@@ -1,12 +1,29 @@
 const addGuesses = document.querySelector('.add-guesses'); // form class to add guess
 const guessesList = document.querySelector('.guesses-list'); //guess list
-
 const chancesLeft = document.querySelector('.chancesLeft'); //chances left div
 const timeBlock = document.querySelector('timer-container'); // timer div
 const guessInput = document.querySelector('#guess-input');
+var audio = document.getElementById('audio');
+
+var playPauseButton = document.getElementById('playPauseButton');
 
 const guesses = JSON.parse(localStorage.getItem('guesses')) || []; // store guesses in session
 var code = JSON.parse(localStorage.getItem('code')); // store code in session 
+
+var count = 0;
+audio.autoplay = true;
+
+function playPause() {
+    if(count==0) {
+        count = 1;
+        audio.play();
+        playPauseButton.innerHTML = "| |"
+    } else {
+        count = 0;
+        audio.pause();
+        playPauseButton.innerHTML = "&#9654"
+    }
+}
 
 $(document).ready(function() {
     var radios = document.getElementsByName("difficulty");
@@ -35,21 +52,25 @@ function openHowToPlay() {
     }
 }
 
-// function that takes in users guess and current code, returns hint in array 
-// function checkStatus(guess,code) {
-//     // console.log("checkstatus called code and guess is:",code,guess)
-//     var result = []
+async function getCode(difficulty) {
+    try {
+    max_param= {
+                "easy": 4,
+                "normal": 7,
+                "hard": 9
+    }
+    const num = max_param[difficulty]
+    const result = await fetch(`https://www.random.org/integers/?num=4&min=0&max=${num}&col=1&base=10&format=plain&rnd=new`, {});
+    const data = await result.text();
+    html = data.replace(/\n/g,'');
+    localStorage.setItem('code', JSON.stringify(html));
+    return html
+} catch (e) {
+    console.log(e)
+    return null;
+}
 
-//     for (var i = 0 ; i< code.length;i++){
-//         if (guess[i] === code[i]) {
-//             result.push(1)
-//         } else if (code.includes(guess[i])) {
-//             result.push(0)
-//         } 
-//     }
-//     return result
-// }
-
+}
 
 function checkGameOver(guesses, status) {
 

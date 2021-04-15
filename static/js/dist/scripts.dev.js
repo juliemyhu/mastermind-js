@@ -9,9 +9,26 @@ var chancesLeft = document.querySelector('.chancesLeft'); //chances left div
 var timeBlock = document.querySelector('timer-container'); // timer div
 
 var guessInput = document.querySelector('#guess-input');
+var audio = document.getElementById('audio');
+var playPauseButton = document.getElementById('playPauseButton');
 var guesses = JSON.parse(localStorage.getItem('guesses')) || []; // store guesses in session
 
 var code = JSON.parse(localStorage.getItem('code')); // store code in session 
+
+var count = 0;
+audio.autoplay = true;
+
+function playPause() {
+  if (count == 0) {
+    count = 1;
+    audio.play();
+    playPauseButton.innerHTML = "| |";
+  } else {
+    count = 0;
+    audio.pause();
+    playPauseButton.innerHTML = "&#9654";
+  }
+}
 
 $(document).ready(function () {
   var radios = document.getElementsByName("difficulty");
@@ -41,20 +58,48 @@ function openHowToPlay() {
     error.style.display = "none";
     buttonText.innerHTML = "How to play";
   }
-} // function that takes in users guess and current code, returns hint in array 
-// function checkStatus(guess,code) {
-//     // console.log("checkstatus called code and guess is:",code,guess)
-//     var result = []
-//     for (var i = 0 ; i< code.length;i++){
-//         if (guess[i] === code[i]) {
-//             result.push(1)
-//         } else if (code.includes(guess[i])) {
-//             result.push(0)
-//         } 
-//     }
-//     return result
-// }
+}
 
+function getCode(difficulty) {
+  var num, result, data;
+  return regeneratorRuntime.async(function getCode$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          _context.prev = 0;
+          max_param = {
+            "easy": 4,
+            "normal": 7,
+            "hard": 9
+          };
+          num = max_param[difficulty];
+          _context.next = 5;
+          return regeneratorRuntime.awrap(fetch("https://www.random.org/integers/?num=4&min=0&max=".concat(num, "&col=1&base=10&format=plain&rnd=new"), {}));
+
+        case 5:
+          result = _context.sent;
+          _context.next = 8;
+          return regeneratorRuntime.awrap(result.text());
+
+        case 8:
+          data = _context.sent;
+          html = data.replace(/\n/g, '');
+          localStorage.setItem('code', JSON.stringify(html));
+          return _context.abrupt("return", html);
+
+        case 14:
+          _context.prev = 14;
+          _context.t0 = _context["catch"](0);
+          console.log(_context.t0);
+          return _context.abrupt("return", null);
+
+        case 18:
+        case "end":
+          return _context.stop();
+      }
+    }
+  }, null, null, [[0, 14]]);
+}
 
 function checkGameOver(guesses, status) {
   var tries = guesses.length;

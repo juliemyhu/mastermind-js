@@ -16,10 +16,19 @@
 
 </head>
 <body>
+    
     <img src="static/images/brain.png">
     <div>
         <h1>Mastermind</h1>
         
+    </div>
+    <div id="audio-button">
+        <audio id="audio" loop>
+            <source src="stranger-things-theme-song.mp3" type="audio/mpeg">
+        </audio>
+        <button id="playPauseButton" onclick="playPause()">&#9658
+        </button>
+
     </div>
     <div id="how-to-play" style="display: none;">
         <span>The objective of the game is to guess the 4-digit code</span>
