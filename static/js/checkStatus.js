@@ -9,6 +9,9 @@ function checkStatus(guess,code) {
             result.push(0)
         } 
     }
+    if (result.length === 0) {
+        result.push("-")
+    }
     return result
 }
 

@@ -29,3 +29,9 @@ timer();
 function stopTimer() {
     clearTimeout(t)
 }
+
+// function clearTimer(t) {
+//     clearTimeout(t)
+//     localStorage.setItem('timer',JSON.stringify("00:00");
+    
+// }

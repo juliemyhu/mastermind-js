@@ -70,11 +70,15 @@ function checkGameOver(guesses, status) {
         var confirmPlay = confirm(`Congrats, You won in ${tries} tries and ${minutes} minute(s) ${seconds} second(s) ! Click ok to play again`)
         
         if (confirmPlay) {
+            
             playAgain();
           }
     } else if (tries >= 10 ) {
         alert(`Game Over, you lost. The code was ${code}`)
+        
         playAgain();
+        // clearTimer();
+        
     }
 }
 
@@ -114,7 +118,7 @@ function populateList(guesses = [], guessesList) {
             <li>
                 <label class ="guess-col" for="item${i}">${guess.text}</label>
             <li>
-                <label class= "status-col" for="item${i}">${guess.status}</label>
+                <label class= "status-col" for="item${i}">${guess.status.join(" ")}</label>
             </li>
         </div>
         `;
@@ -127,7 +131,10 @@ function playAgain () {
     localStorage.removeItem('timer')
     location.reload();
     var val = JSON.parse(localStorage.getItem('difficulty'));
+    // localStorage.setItem('timer', JSON.stringify("00:00"));
+
     getCode(val)
+
 
 }
 
@@ -135,7 +142,8 @@ function changeDifficulty(difficulty) {
     // console.log("inside change difficult function",difficulty)
     // playAgain()
     localStorage.setItem('difficulty', JSON.stringify(difficulty));
-    getCode(difficulty)  
+    getCode(difficulty) 
+
       
 }
 
