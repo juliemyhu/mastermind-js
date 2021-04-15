@@ -1,3 +1,5 @@
+// const getCode = require("./getCode");
+
 const addGuesses = document.querySelector('.add-guesses'); // form class to add guess
 const guessesList = document.querySelector('.guesses-list'); //guess list
 const chancesLeft = document.querySelector('.chancesLeft'); //chances left div
@@ -59,25 +61,25 @@ function openHowToPlay() {
     }
 }
 
-async function getCode(difficulty) {
-    try {
-    max_param= {
-                "easy": 4,
-                "normal": 7,
-                "hard": 9
-    }
-    const num = max_param[difficulty]
-    const result = await fetch(`https://www.random.org/integers/?num=4&min=0&max=${num}&col=1&base=10&format=plain&rnd=new`, {});
-    const data = await result.text();
-    html = data.replace(/\n/g,'');
-    localStorage.setItem('code', JSON.stringify(html));
-    return html
-} catch (e) {
-    console.log(e)
-    return null;
-}
+// async function getCode(difficulty) {
+//     try {
+//     max_param= {
+//                 "easy": 4,
+//                 "normal": 7,
+//                 "hard": 9
+//     }
+//     const num = max_param[difficulty]
+//     const result = await fetch(`https://www.random.org/integers/?num=4&min=0&max=${num}&col=1&base=10&format=plain&rnd=new`, {});
+//     const data = await result.text();
+//     html = data.replace(/\n/g,'');
+//     localStorage.setItem('code', JSON.stringify(html));
+//     return html
+// } catch (e) {
+//     console.log(e)
+//     return null;
+// }
 
-}
+// }
 
 function checkGameOver(guesses, status) {
 
@@ -205,7 +207,7 @@ function onInputChange(e) {
 
 
 if (code === null) {
-    var val = JSON.parse(localStorage.getItem('difficulty'));
+    var val = JSON.parse(localStorage.getItem('difficulty')) ;
     getCode(val)
 }
 

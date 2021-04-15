@@ -1,5 +1,6 @@
 "use strict";
 
+// const getCode = require("./getCode");
 var addGuesses = document.querySelector('.add-guesses'); // form class to add guess
 
 var guessesList = document.querySelector('.guesses-list'); //guess list
@@ -58,48 +59,25 @@ function openHowToPlay() {
     error.style.display = "none";
     buttonText.innerHTML = "How to play";
   }
-}
+} // async function getCode(difficulty) {
+//     try {
+//     max_param= {
+//                 "easy": 4,
+//                 "normal": 7,
+//                 "hard": 9
+//     }
+//     const num = max_param[difficulty]
+//     const result = await fetch(`https://www.random.org/integers/?num=4&min=0&max=${num}&col=1&base=10&format=plain&rnd=new`, {});
+//     const data = await result.text();
+//     html = data.replace(/\n/g,'');
+//     localStorage.setItem('code', JSON.stringify(html));
+//     return html
+// } catch (e) {
+//     console.log(e)
+//     return null;
+// }
+// }
 
-function getCode(difficulty) {
-  var num, result, data;
-  return regeneratorRuntime.async(function getCode$(_context) {
-    while (1) {
-      switch (_context.prev = _context.next) {
-        case 0:
-          _context.prev = 0;
-          max_param = {
-            "easy": 4,
-            "normal": 7,
-            "hard": 9
-          };
-          num = max_param[difficulty];
-          _context.next = 5;
-          return regeneratorRuntime.awrap(fetch("https://www.random.org/integers/?num=4&min=0&max=".concat(num, "&col=1&base=10&format=plain&rnd=new"), {}));
-
-        case 5:
-          result = _context.sent;
-          _context.next = 8;
-          return regeneratorRuntime.awrap(result.text());
-
-        case 8:
-          data = _context.sent;
-          html = data.replace(/\n/g, '');
-          localStorage.setItem('code', JSON.stringify(html));
-          return _context.abrupt("return", html);
-
-        case 14:
-          _context.prev = 14;
-          _context.t0 = _context["catch"](0);
-          console.log(_context.t0);
-          return _context.abrupt("return", null);
-
-        case 18:
-        case "end":
-          return _context.stop();
-      }
-    }
-  }, null, null, [[0, 14]]);
-}
 
 function checkGameOver(guesses, status) {
   var tries = guesses.length;
