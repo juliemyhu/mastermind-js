@@ -17,5 +17,5 @@ function checkStatus(guess,code) {
 
 
 // export default checkStatus;
-module.exports = checkStatus;
+// module.exports = checkStatus;
 
