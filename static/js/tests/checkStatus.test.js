@@ -30,3 +30,7 @@ test('should handle repeated numbers 0 case', function () {
   expect(checkStatus('6667', '1256')).toEqual([0, 0, 0]);
 });
 
+test('recognize wrong code to NOT win ', function () {
+  expect(checkStatus('4242', '4442')).not.toEqual([1,1,1,1]);
+});
+

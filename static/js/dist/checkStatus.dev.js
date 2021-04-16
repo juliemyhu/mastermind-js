@@ -1,7 +1,6 @@
 "use strict";
 
 function checkStatus(guess, code) {
-  // console.log("checkstatus called code and guess is:",code,guess)
   var result = [];
 
   for (var i = 0; i < code.length; i++) {
@@ -17,5 +16,6 @@ function checkStatus(guess, code) {
   }
 
   return result;
-} // export default checkStatus;
-// module.exports = checkStatus;
+}
+
+module.exports = checkStatus;

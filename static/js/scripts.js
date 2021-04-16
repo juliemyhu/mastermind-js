@@ -10,8 +10,8 @@ var playPauseButton = document.querySelector('.playPauseButton');
 const guesses = JSON.parse(localStorage.getItem('guesses')) || []; // store guesses in session
 var code = JSON.parse(localStorage.getItem('code')); // store code in session 
 
-var count = 0;
 
+var count = 0;
 function playPause() {
     if(count==0) {
         count = 1;
