@@ -1,6 +1,5 @@
 "use strict";
 
-// const getCode = require("./getCode");
 var addGuesses = document.querySelector('.add-guesses'); // form class to add guess
 
 var guessesList = document.querySelector('.guesses-list'); //guess list
@@ -17,7 +16,6 @@ var guesses = JSON.parse(localStorage.getItem('guesses')) || []; // store guesse
 var code = JSON.parse(localStorage.getItem('code')); // store code in session 
 
 var count = 0;
-audio.autoplay = true;
 
 function playPause() {
   if (count == 0) {
@@ -59,25 +57,7 @@ function openHowToPlay() {
     error.style.display = "none";
     buttonText.innerHTML = "How to play";
   }
-} // async function getCode(difficulty) {
-//     try {
-//     max_param= {
-//                 "easy": 4,
-//                 "normal": 7,
-//                 "hard": 9
-//     }
-//     const num = max_param[difficulty]
-//     const result = await fetch(`https://www.random.org/integers/?num=4&min=0&max=${num}&col=1&base=10&format=plain&rnd=new`, {});
-//     const data = await result.text();
-//     html = data.replace(/\n/g,'');
-//     localStorage.setItem('code', JSON.stringify(html));
-//     return html
-// } catch (e) {
-//     console.log(e)
-//     return null;
-// }
-// }
-
+}
 
 function checkGameOver(guesses, status) {
   var tries = guesses.length;
@@ -101,7 +81,7 @@ function checkGameOver(guesses, status) {
   } else if (tries >= 10) {
     alert("Game Over, you lost. The code was ".concat(code));
     stopTimer();
-    playAgain(); // clearTimer();
+    playAgain();
   }
 }
 
@@ -112,10 +92,8 @@ function updateChances(guesses) {
 
 function addItem(e) {
   e.preventDefault();
-  var text = this.querySelector('[name=guess]').value; // console.log(text ,typeof(text))
-
+  var text = this.querySelector('[name=guess]').value;
   var code = JSON.parse(localStorage.getItem('code')); // store code in session 
-  // console.log(code ,typeof(code))
 
   var status = checkStatus(text, code);
   var item = {
@@ -143,14 +121,11 @@ function playAgain() {
   localStorage.removeItem('guesses');
   localStorage.removeItem('timer');
   location.reload();
-  var val = JSON.parse(localStorage.getItem('difficulty')); // localStorage.setItem('timer', JSON.stringify("00:00"));
-
+  var val = JSON.parse(localStorage.getItem('difficulty'));
   getCode(val);
 }
 
 function changeDifficulty(difficulty) {
-  // console.log("inside change difficult function",difficulty)
-  // playAgain()
   localStorage.setItem('difficulty', JSON.stringify(difficulty));
   getCode(difficulty);
 }
@@ -184,10 +159,10 @@ function onInputChange(e) {
 }
 
 if (code === null) {
-  var val = JSON.parse(localStorage.getItem('difficulty'));
+  var val = JSON.parse(localStorage.getItem('difficulty')) || "normal";
   getCode(val);
 }
 
 addGuesses.addEventListener('submit', addItem);
 populateList(guesses, guessesList);
-updateChances(guesses); // module.exports = checkStatus;
+updateChances(guesses);
