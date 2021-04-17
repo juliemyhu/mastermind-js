@@ -122,7 +122,8 @@ function populateList() {
   guessesList.innerHTML = guesses.map(function (guess, i) {
     return "\n        <div class=\"guess-hint\">\n            <li>\n                <label class=\"attempt-col\"> ".concat(i + 1, "</label>\n            </li>\n            <li>\n                <label class =\"guess-col\" for=\"item").concat(i, "\">").concat(guess.text, "</label>\n            <li>\n                <label class= \"status-col\" for=\"item").concat(i, "\">").concat(guess.status.join(" "), "</label>\n            </li>\n        </div>\n        ");
   }).join('');
-}
+} // function that restarts game
+
 
 function playAgain() {
   localStorage.removeItem('code');
@@ -131,14 +132,14 @@ function playAgain() {
   location.reload();
   var val = JSON.parse(localStorage.getItem('difficulty'));
   getCode(val);
-}
+} // function that updates code if radio button selected
+
 
 function changeDifficulty(difficulty) {
   localStorage.setItem('difficulty', JSON.stringify(difficulty));
   getCode(difficulty);
-}
+} // function that looks for input errors
 
-guessInput.addEventListener('keydown', onInputChange);
 
 function onInputChange(e) {
   var error = document.getElementById("error-p");
@@ -171,6 +172,7 @@ if (code === null) {
   getCode(val);
 }
 
+guessInput.addEventListener('keydown', onInputChange);
 addGuesses.addEventListener('submit', addItem);
 populateList(guesses, guessesList);
 updateChances(guesses);

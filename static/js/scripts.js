@@ -2,15 +2,11 @@ const addGuesses = document.querySelector('.add-guesses'); // form class to add 
 const guessesList = document.querySelector('.guesses-list'); //guess list
 const chancesLeft = document.querySelector('.chancesLeft'); //chances left div
 const guessInput = document.querySelector('#guess-input'); // guess input form
-
 var audio = document.getElementById('audio'); // audio tag
-
 var playPauseButton = document.querySelector('.playPauseButton'); //playpause button
 
 const guesses = JSON.parse(localStorage.getItem('guesses')) || []; // store guesses in session
 var code = JSON.parse(localStorage.getItem('code')); // store code in session 
-
-
 
 var count = 0;
 
@@ -136,6 +132,7 @@ function populateList(guesses = [], guessesList) {
     }).join('');
 }
 
+// function that restarts game
 function playAgain () {
     localStorage.removeItem('code');
     localStorage.removeItem('guesses');
@@ -145,13 +142,13 @@ function playAgain () {
     getCode(val)
 }
 
+// function that updates code if radio button selected
 function changeDifficulty(difficulty) {
     localStorage.setItem('difficulty', JSON.stringify(difficulty));
     getCode(difficulty) 
 }
 
-guessInput.addEventListener('keydown',onInputChange);
-
+// function that looks for input errors
 function onInputChange(e) {
     var error = document.getElementById("error-p");
     var val = JSON.parse(localStorage.getItem('difficulty'));
@@ -184,6 +181,8 @@ if (code === null) {
     getCode(val)
 }
 
+
+guessInput.addEventListener('keydown',onInputChange);
 addGuesses.addEventListener('submit', addItem);
 populateList(guesses, guessesList);
 updateChances(guesses)

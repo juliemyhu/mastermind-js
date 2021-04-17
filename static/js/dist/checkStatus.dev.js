@@ -1,5 +1,6 @@
 "use strict";
 
+// function that checks guess with code and returns list of hints
 function checkStatus(guess, code) {
   var result = [];
 

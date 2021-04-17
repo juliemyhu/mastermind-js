@@ -17,7 +17,7 @@
 //     });
 //     return code
 // }
-// returns a promise
+// function that fetches API and returns code in a promise
 function getCode(difficulty) {
   var num, result, data;
   return regeneratorRuntime.async(function getCode$(_context) {

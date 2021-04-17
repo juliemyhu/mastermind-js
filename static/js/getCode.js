@@ -17,7 +17,7 @@
 //     return code
 // }
 
-// returns a promise
+// function that fetches API and returns code in a promise
 async function getCode(difficulty) {
     try {
     max_param= {
