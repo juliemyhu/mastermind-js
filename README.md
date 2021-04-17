@@ -2,6 +2,8 @@
 
 Mastermind JS is a code breaking game based off the board game Mastermind. The same rules apply - there is a 4 code combination that we need to break. The only difference from the actual game is that we're using numbers instead of colors and pegs. Read more about Mastermind here: https://en.wikipedia.org/wiki/Mastermind_(board_game)
 
+![](/static/images/game.gif?raw=true)
+
 ### :boom: Technologies/Languages Used
 
 - Javascript
@@ -32,11 +34,11 @@ Prior to working on this project, I was also following a [JS 30 day course](http
 - 3 Difficulty Mode
 - Theme music
 
-### How I implement the "Database":
+### How I implemented the "Database":
 
 Because I didn't have a database like mySQL or SQLalchemy, I used the browsers Local Storage to store my data. It stores the difficulty, code, guesses, and timer. I got this idea from following a todo list tutorial with local storage and thought it would be nice way to persist data. If a player refreshes their page, they can contiune the game where they left off! It was also very good practice using local storage. If you are curious, just open up the console -> application tab -> local storage
 
-The reason I store difficulty in local storage is so that the game knows which mode you are playing with and it can go and get that difficulties code.
+The reason I stored difficulty in local storage is so that the game knows which mode you are playing with and it can go and get that difficulties code.
 
 ### About the Author
 
