@@ -48,10 +48,9 @@ function getCode(difficulty) {
         case 14:
           _context.prev = 14;
           _context.t0 = _context["catch"](0);
-          console.log(_context.t0);
           return _context.abrupt("return", null);
 
-        case 18:
+        case 17:
         case "end":
           return _context.stop();
       }

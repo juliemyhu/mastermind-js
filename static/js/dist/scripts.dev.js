@@ -47,16 +47,18 @@ $(document).ready(function () {
 });
 
 function openHowToPlay() {
-  var error = document.getElementById("how-to-play");
+  var howDiv = document.getElementById("how-to-play");
   var buttonText = document.getElementById("how-button");
 
-  if (error.style.display === "none") {
-    error.style.display = "block";
+  if (howDiv.style.display === "none") {
+    howDiv.style.display = "block";
     buttonText.innerHTML = "Back to playing";
   } else {
-    error.style.display = "none";
+    howDiv.style.display = "none";
     buttonText.innerHTML = "How to play";
   }
+
+  return howDiv;
 }
 
 function checkGameOver(guesses, status) {
@@ -166,3 +168,4 @@ if (code === null) {
 addGuesses.addEventListener('submit', addItem);
 populateList(guesses, guessesList);
 updateChances(guesses);
+module.exports = populateList;
