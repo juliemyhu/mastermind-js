@@ -37,3 +37,9 @@ it('handles exception with null', async () => {
     expect(fetch).toHaveBeenCalledWith('https://www.random.org/integers/?num=4&min=0&max=4&col=1&base=10&format=plain&rnd=new', {})
 })
 
+it('handles exception of wrong level parameter with null', async () => {
+    fetch.mockImplementationOnce(() => Promise.reject("API failure"));
+    const code = await getCode("medium");
+    expect(code).toEqual(null);
+    expect(fetch).toHaveBeenCalledWith('https://www.random.org/integers/?num=4&min=0&max=undefined&col=1&base=10&format=plain&rnd=new', {})
+})

@@ -32,7 +32,6 @@ async function getCode(difficulty) {
     localStorage.setItem('code', JSON.stringify(html));
     return html
 } catch (e) {
-    // console.log(e)
     return null;
 }
 }

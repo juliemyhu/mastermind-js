@@ -6,16 +6,17 @@ var guessesList = document.querySelector('.guesses-list'); //guess list
 
 var chancesLeft = document.querySelector('.chancesLeft'); //chances left div
 
-var timeBlock = document.querySelector('timer-container'); // timer div
+var guessInput = document.querySelector('#guess-input'); // guess input form
 
-var guessInput = document.querySelector('#guess-input');
-var audio = document.getElementById('audio');
-var playPauseButton = document.querySelector('.playPauseButton');
+var audio = document.getElementById('audio'); // audio tag
+
+var playPauseButton = document.querySelector('.playPauseButton'); //playpause button
+
 var guesses = JSON.parse(localStorage.getItem('guesses')) || []; // store guesses in session
 
 var code = JSON.parse(localStorage.getItem('code')); // store code in session 
 
-var count = 0;
+var count = 0; // function that toggles play pause button
 
 function playPause() {
   if (count == 0) {
@@ -27,7 +28,8 @@ function playPause() {
     audio.play();
     playPauseButton.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-pause-circle\" viewBox=\"0 0 16 16\">\n        <path d=\"M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z\"/>\n        <path d=\"M5 6.25a1.25 1.25 0 1 1 2.5 0v3.5a1.25 1.25 0 1 1-2.5 0v-3.5zm3.5 0a1.25 1.25 0 1 1 2.5 0v3.5a1.25 1.25 0 1 1-2.5 0v-3.5z\"/>\n      </svg>";
   }
-}
+} // function that updates difficulty on radio buttons
+
 
 $(document).ready(function () {
   var radios = document.getElementsByName("difficulty");
@@ -44,7 +46,7 @@ $(document).ready(function () {
     getCode($(this).val());
     playAgain();
   });
-});
+}); // function that opens instructions
 
 function openHowToPlay() {
   var howDiv = document.getElementById("how-to-play");
@@ -59,7 +61,8 @@ function openHowToPlay() {
   }
 
   return howDiv;
-}
+} // function that checks if game is over
+
 
 function checkGameOver(guesses, status) {
   var tries = guesses.length;
@@ -85,12 +88,14 @@ function checkGameOver(guesses, status) {
     stopTimer();
     playAgain();
   }
-}
+} // function that updates chances left
+
 
 function updateChances(guesses) {
   var num = guesses.length;
   chancesLeft.innerHTML = "".concat(10 - num);
-}
+} // function that adds guess to guesses list
+
 
 function addItem(e) {
   e.preventDefault();
@@ -108,7 +113,8 @@ function addItem(e) {
   checkGameOver(guesses, status);
   populateList(guesses, guessesList);
   updateChances(guesses);
-}
+} // function that updates list with guess info syncro
+
 
 function populateList() {
   var guesses = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
@@ -168,4 +174,3 @@ if (code === null) {
 addGuesses.addEventListener('submit', addItem);
 populateList(guesses, guessesList);
 updateChances(guesses);
-module.exports = populateList;

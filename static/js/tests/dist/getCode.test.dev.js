@@ -104,3 +104,27 @@ it('handles exception with null', function _callee4() {
     }
   });
 });
+it('handles exception of wrong level parameter with null', function _callee5() {
+  var code;
+  return regeneratorRuntime.async(function _callee5$(_context5) {
+    while (1) {
+      switch (_context5.prev = _context5.next) {
+        case 0:
+          fetch.mockImplementationOnce(function () {
+            return Promise.reject("API failure");
+          });
+          _context5.next = 3;
+          return regeneratorRuntime.awrap(getCode("medium"));
+
+        case 3:
+          code = _context5.sent;
+          expect(code).toEqual(null);
+          expect(fetch).toHaveBeenCalledWith('https://www.random.org/integers/?num=4&min=0&max=undefined&col=1&base=10&format=plain&rnd=new', {});
+
+        case 6:
+        case "end":
+          return _context5.stop();
+      }
+    }
+  });
+});

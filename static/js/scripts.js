@@ -1,17 +1,20 @@
 const addGuesses = document.querySelector('.add-guesses'); // form class to add guess
 const guessesList = document.querySelector('.guesses-list'); //guess list
 const chancesLeft = document.querySelector('.chancesLeft'); //chances left div
-const timeBlock = document.querySelector('timer-container'); // timer div
-const guessInput = document.querySelector('#guess-input');
-var audio = document.getElementById('audio');
+const guessInput = document.querySelector('#guess-input'); // guess input form
 
-var playPauseButton = document.querySelector('.playPauseButton');
+var audio = document.getElementById('audio'); // audio tag
+
+var playPauseButton = document.querySelector('.playPauseButton'); //playpause button
 
 const guesses = JSON.parse(localStorage.getItem('guesses')) || []; // store guesses in session
 var code = JSON.parse(localStorage.getItem('code')); // store code in session 
 
 
+
 var count = 0;
+
+// function that toggles play pause button
 function playPause() {
     if(count==0) {
         count = 1;
@@ -30,6 +33,7 @@ function playPause() {
     }
 }
 
+// function that updates difficulty on radio buttons
 $(document).ready(function() {
     var radios = document.getElementsByName("difficulty");
     var val = JSON.parse(localStorage.getItem('difficulty')) || 'normal';
@@ -45,6 +49,8 @@ $(document).ready(function() {
     });
 });
 
+
+// function that opens instructions
 function openHowToPlay() {
     var howDiv = document.getElementById("how-to-play");
     var buttonText = document.getElementById("how-button");
@@ -58,6 +64,7 @@ function openHowToPlay() {
     return howDiv
 }
 
+// function that checks if game is over
 function checkGameOver(guesses, status) {
 
     var tries = guesses.length;
@@ -86,11 +93,13 @@ function checkGameOver(guesses, status) {
     }
 }
 
+// function that updates chances left
 function updateChances(guesses) {
     var num = guesses.length;
     chancesLeft.innerHTML = `${10 - num}`;
 }
 
+// function that adds guess to guesses list
 function addItem(e) {
     e.preventDefault();
     const text = (this.querySelector('[name=guess]')).value;
@@ -109,6 +118,7 @@ function addItem(e) {
     updateChances(guesses)  
 }
 
+// function that updates list with guess info syncro
 function populateList(guesses = [], guessesList) {
     guessesList.innerHTML = guesses.map((guess, i) => {
         return `
@@ -179,4 +189,3 @@ populateList(guesses, guessesList);
 updateChances(guesses)
 
 
-module.exports = populateList;
