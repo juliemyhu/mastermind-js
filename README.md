@@ -40,6 +40,12 @@ Because I didn't have a database like mySQL or SQLalchemy, I used the browsers L
 
 The reason I stored difficulty in local storage is so that the game knows which mode you are playing with and it can go and get that difficulties code.
 
+### :hammer_and_wrench: Future Improvements
+
+- Allow hints
+- replace alert wins/losses with popup div
+- add black/ white colored pegs instead of 0's and 1's
+
 ### About the Author
 
 Julie Hu is a previous pre-health student turned Software Engineer in the Bay Area. You can find more information about her in the links below:
