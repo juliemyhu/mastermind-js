@@ -35,7 +35,7 @@ Overall, I had a lot of fun creating this project. I worked with a lot on new te
 # :bulb: Features
 
 - Guess Field and History Section
-- Input Error handeling
+- Input Error handleing
 - Saves Game / Restart button
 - How to play button
 - Attempt Counter and Timer
