@@ -9,7 +9,7 @@ Mastermind JS is a code breaking game based off the board game Mastermind. The s
 - Javascript
 - JQuery
 - HTML
-- CSS / SCSS
+- CSS / Sass
 - Jest
 
 ### :computer: How to locally run Mastermind
